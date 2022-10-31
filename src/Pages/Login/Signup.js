@@ -1,10 +1,21 @@
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useState } from 'react';
 import auth from '../../firebase.init';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { async } from '@firebase/util';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Signup = () => {
+    const navigate = useNavigate()
+    const [customError, setCustomError] = useState('');
+
+    const location = useLocation();
+
+    let from = location.state?.from?.pathname || "/";
+
 
     const [
         createUserWithEmailAndPassword,
@@ -12,10 +23,30 @@ const Signup = () => {
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
-    const handleEmailSignUp = (event) => {
+    if (user) {
+        navigate(from, { replace: true });
+    }
+
+
+    const handleEmailSignUp = async (event) => {
+        event.preventDefault();
         const email = event.target.email.value;
-        console.log(email)
+        const displayName = event.target.userName.value;
+        const password = event.target.password.value;
+        const confirmPassword = event.target.confirmPassword.value;
+
+
+        if (password === confirmPassword) {
+            await createUserWithEmailAndPassword(email, password);
+            toast('Verification Email Sent')
+            await updateProfile({ displayName: displayName });
+        }
+        else {
+            setCustomError("Your two passwords didn't match");
+
+        }
     }
 
     return (
@@ -45,24 +76,24 @@ const Signup = () => {
 
                         <button type="submit" className="btn btn-dark mt-2 w-100 py-2 mb-3">SignUp</button>
 
-                        {/* {
-                            customError ? <p><span className='fs-5 fw-bold'><u>Error</u>  </span> {customError}</p> : ''
+                        {
+                            customError ? <p><span className='fs-5 fw-bold text-danger'><u>Error</u>  </span> {customError}</p> : ''
                         }
                         {
                             !error || !updateError ?
                                 <p></p>
                                 :
                                 <div>
-                                    <p><span className='fs-5 fw-bold'><u>Error</u>  </span> {error?.message}</p>
+                                    <p><span className='fs-5 fw-bold'><u>Error</u>  </span> {error?.message} {updateError?.message}</p>
 
                                 </div>
-                        } */}
+                        }
 
                     </form>
 
                 </div>
             </div>
-
+            <ToastContainer />
         </div>
     );
 };

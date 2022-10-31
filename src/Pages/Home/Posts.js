@@ -45,15 +45,15 @@ const Posts = () => {
             </div>
             <div className="row">
                 <div className="col-12 col-lg-7">
-                    <div class="card mb-3">
-                        <img src={img1} class="card-img-top" alt="..."></img>
-                        <div class="card-body">
-                            <h5 class="card-title">Article</h5>
+                    <div className="card mb-3">
+                        <img src={img1} className="card-img-top" alt="..."></img>
+                        <div className="card-body">
+                            <h5 className="card-title">Article</h5>
                             <div className='d-flex justify-content-between'>
-                                <p class="card-text fw-bold m-0 ">What if famous brands have regular fonts? Meet Regular brands</p>
+                                <p className="card-text fw-bold m-0 ">What if famous brands have regular fonts? Meet Regular brands</p>
                                 <p className='fw-bolder fs-3 m-0'>...</p>
                             </div>
-                            <div class="card-text"><small class="text-muted ">I have worked in UX for the better part of the decade.From now on, I plan to...</small>
+                            <div className="card-text"><small className="text-muted ">I have worked in UX for the better part of the decade.From now on, I plan to...</small>
                                 <div className='d-flex justify-content-between pt-3'>
                                     <div className="div">
                                         <img className='img-fluid rounded-pill w-25' src={people} alt="" /><span className='fw-bold user-name'> Sarthak Kumar</span>
@@ -69,15 +69,15 @@ const Posts = () => {
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-3 ">
-                        <img src={img2} class="card-img-top" alt="..."></img>
-                        <div class="card-body">
-                            <h5 class="card-title">Article</h5>
+                    <div className="card mb-3 ">
+                        <img src={img2} className="card-img-top" alt="..."></img>
+                        <div className="card-body">
+                            <h5 className="card-title">Article</h5>
                             <div className='d-flex justify-content-between'>
-                                <p class="card-text fw-bold m-0 ">What if famous brands have regular fonts? Meet Regular brands</p>
+                                <p className="card-text fw-bold m-0 ">What if famous brands have regular fonts? Meet Regular brands</p>
                                 <p className='fw-bolder fs-3 m-0'>...</p>
                             </div>
-                            <div class="card-text"><small class="text-muted ">I have worked in UX for the better part of the decade.From now on, I plan to...</small>
+                            <div className="card-text"><small className="text-muted ">I have worked in UX for the better part of the decade.From now on, I plan to...</small>
                                 <div className='d-flex justify-content-between pt-3'>
                                     <div className="div">
                                         <img className='img-fluid rounded-pill w-25' src={people1} alt="" /><span className='fw-bold user-name' > Sarah West</span>
@@ -93,15 +93,15 @@ const Posts = () => {
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-3">
-                        <img src={img3} class="card-img-top" alt="..."></img>
-                        <div class="card-body">
-                            <h5 class="card-title">Article</h5>
+                    <div className="card mb-3">
+                        <img src={img3} className="card-img-top" alt="..."></img>
+                        <div className="card-body">
+                            <h5 className="card-title">Article</h5>
                             <div className='d-flex justify-content-between'>
-                                <p class="card-text fw-bold m-0 ">What if famous brands have regular fonts? Meet Regular brands</p>
+                                <p className="card-text fw-bold m-0 ">What if famous brands have regular fonts? Meet Regular brands</p>
                                 <p className='fw-bolder fs-3 m-0'>...</p>
                             </div>
-                            <div class="card-text"><small class="text-muted ">I have worked in UX for the better part of the decade.From now on, I plan to...</small>
+                            <div className="card-text"><small className="text-muted ">I have worked in UX for the better part of the decade.From now on, I plan to...</small>
                                 <div className='d-flex justify-content-between pt-3'>
                                     <div className="div">
                                         <img className='img-fluid rounded-pill w-25' src={people1} alt="" /><span className='fw-bold user-name'> Sarthak Kumar</span>
