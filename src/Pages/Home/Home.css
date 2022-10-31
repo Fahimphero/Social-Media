@@ -1,0 +1,89 @@
+.background {
+    background-image: url('../../Images/Vector.svg');
+    background-repeat: no-repeat;
+    /* background-position: left; */
+    background-position: 5% 50%;
+}
+
+
+@media (max-width: 575.98px) {
+
+    .mobile {
+        display: flex;
+        flex-direction: column;
+
+    }
+
+
+
+
+}
+
+@media (min-width: 1024px) {
+
+    .mobile-width {
+        width: 25%;
+    }
+
+}
+
+
+@media (min-width: 320px) and (max-width: 426px) {
+
+    .mobile-width {
+        width: 100%;
+    }
+
+}
+
+
+.background-img {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.900), rgba(0, 0, 0, 0.092)), url('../../Images/Rectangle\ 2.jpg');
+    height: 80vh;
+    /* color:transparent; */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.text {
+    bottom: 20%;
+    transform: translateX(45%);
+
+}
+
+@media (min-width: 320px) and (max-width: 426px) {
+
+    .text {
+        bottom: 20%;
+        transform: translateX(1%);
+        transform: translateY(40%);
+
+    }
+
+    .responsive-modal {
+        width: 100%;
+    }
+
+    .user-name {
+        font-size: 12px;
+    }
+
+    .icon {
+        width: 10px;
+    }
+
+    .views {
+        font-size: 10px;
+    }
+
+}
+
+@media (min-width: 1024px) {
+
+    .responsive-modal {
+        width: 50%;
+    }
+
+}

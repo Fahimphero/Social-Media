@@ -1,0 +1,23 @@
+@media (min-width: 768px) {
+    .login-form {
+        width: 50%;
+
+    }
+
+}
+
+.login-form {
+    background-image: linear-gradient(royalblue, blue);
+}
+
+.hover {
+    background-color: white;
+    border: 0px;
+    border-radius: 50px;
+    font-weight: 500;
+}
+
+.hover:hover {
+    background-color: royalblue;
+
+}
