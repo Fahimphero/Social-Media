@@ -5,6 +5,10 @@
     background-position: 5% 50%;
 }
 
+.user-img {
+    width: 40px;
+}
+
 
 @media (max-width: 575.98px) {
 
@@ -78,6 +82,9 @@
         font-size: 10px;
     }
 
+    .user-img {
+        width: 33px;
+    }
 }
 
 @media (min-width: 1024px) {

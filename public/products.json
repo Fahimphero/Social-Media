@@ -1,0 +1,95 @@
+[
+    {
+        "title": "What if famous brands have regular fonts? Meet Regular brands",
+        "image": "https://i.ibb.co/3W9Dghj/post-1.png",
+        "body": "I have worked in UX for the better part of the decade.From now on, I plan to...",
+        "likes": 15,
+        "name": "Sarthak Kumar",
+        "like": "liked",
+        "userImg": "https://i.ibb.co/8bqrnJF/People-2.webp",
+        "comments": [
+            {
+                "comment": "This the best. I love it",
+                "userName": "John Cena",
+                "img": "https://i.ibb.co/kK4gTf2/People-2.png"
+            },
+            {
+                "comment": "This the best. I love it",
+                "userName": "John Cena",
+                "img": "https://i.ibb.co/kK4gTf2/People-2.png"
+            },
+            {
+                "comment": "This the best. I love it",
+                "userName": "John Cena",
+                "img": "https://i.ibb.co/kK4gTf2/People-2.png"
+            },
+            {
+                "comment": "This the best. I love it",
+                "userName": "John Cena",
+                "img": "https://i.ibb.co/kK4gTf2/People-2.png"
+            }
+        ]
+    },
+    {
+        "title": "What if famous brands have regular fonts? Meet Regular brands",
+        "image": "https://i.ibb.co/8sB6SfD/post-2.png",
+        "body": "I have worked in UX for the better part of the decade.From now on, I plan to...",
+        "likes": 15,
+        "name": "Sarah West",
+        "like": "liked",
+        "userImg": "https://i.ibb.co/L87LWrw/People-1.png",
+        "comments": [
+            {
+                "comment": "This the best. I love it",
+                "userName": "John Cena",
+                "img": "https://i.ibb.co/kK4gTf2/People-2.png"
+            },
+            {
+                "comment": "This the best. I love it",
+                "userName": "John Cena",
+                "img": "https://i.ibb.co/kK4gTf2/People-2.png"
+            },
+            {
+                "comment": "This the best. I love it",
+                "userName": "John Cena",
+                "img": "https://i.ibb.co/kK4gTf2/People-2.png"
+            },
+            {
+                "comment": "This the best. I love it",
+                "userName": "John Cena",
+                "img": "https://i.ibb.co/kK4gTf2/People-2.png"
+            }
+        ]
+    },
+    {
+        "title": "What if famous brands have regular fonts? Meet Regular brands",
+        "image": "https://i.ibb.co/gTHMW4L/post-3.png",
+        "body": "I have worked in UX for the better part of the decade.From now on, I plan to...",
+        "likes": 15,
+        "name": "Sarthak Kumar",
+        "like": "liked",
+        "userImg": "https://i.ibb.co/47p9NdH/People-3.png",
+        "comments": [
+            {
+                "comment": "This the best. I love it",
+                "userName": "John Cena",
+                "img": "https://i.ibb.co/kK4gTf2/People-2.png"
+            },
+            {
+                "comment": "This the best. I love it",
+                "userName": "John Cena",
+                "img": "https://i.ibb.co/kK4gTf2/People-2.png"
+            },
+            {
+                "comment": "This the best. I love it",
+                "userName": "John Cena",
+                "img": "https://i.ibb.co/kK4gTf2/People-2.png"
+            },
+            {
+                "comment": "This the best. I love it",
+                "userName": "John Cena",
+                "img": "https://i.ibb.co/kK4gTf2/People-2.png"
+            }
+        ]
+    }
+]
