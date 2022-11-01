@@ -16,6 +16,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { toast, ToastContainer } from 'react-toastify';
 import gif from '../../Images/Spinner-1s-104px (2).svg'
+import { useQuery } from 'react-query';
 
 
 const Posts = () => {
@@ -27,7 +28,10 @@ const Posts = () => {
     const [comment, setComment] = useState('');
     const [postId, setPostid] = useState('');
 
-    const [post, setPost] = useState({});
+    const [value, setValue] = useState(0);
+    const [likesQuantity, setQuantity] = useState();
+
+    // const [post, setPost] = useState({});
 
     const imageStorageKey = '449a09738c7de2a852b1ccfbf7e449d2'
 
@@ -44,7 +48,7 @@ const Posts = () => {
         fetch('http://localhost:5000/posts')
             .then(res => res.json())
             .then(data => setPosts(data))
-    }, [posts, comment])
+    }, [posts])
 
 
     const handleCreatePost = (event) => {
@@ -79,6 +83,7 @@ const Posts = () => {
                             likes: 0,
                             userImg: userImg,
                             image: img,
+                            like: 'unliked',
                             comments: []
                         }
                         // Send to database
@@ -113,13 +118,20 @@ const Posts = () => {
 
     }
 
+    const { data: post, isLoading, refetch } = useQuery('post', () =>
+        fetch(`http://localhost:5000/posts/${postId}`).then(res =>
+            res.json()
+        )
+    )
+    refetch()
     const handleComment = (id) => {
         console.log(id)
         setPostid(id)
-        const url = `http://localhost:5000/posts/${id}`
-        fetch(url)
-            .then(res => res.json())
-            .then(data => setPost(data))
+
+        // const url = `http://localhost:5000/posts/${id}`
+        // fetch(url)
+        //     .then(res => res.json())
+        //     .then(data => setPost(data))
     }
 
     const handleSubmit = (e) => {
@@ -149,11 +161,122 @@ const Posts = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
+                refetch()
                 e.target.reset()
             })
 
     }
 
+
+    let i = 0
+    let j = 0
+
+    const click = [''];
+    const handleColor = (quantity, id, user, likeStatus) => {
+        console.log(quantity, id, user.email, likeStatus)
+
+        // const input = i + 1
+
+        if (likeStatus === 'liked') {
+            setValue(i + 1)
+            console.log("i", value)
+            if (value === 1) {
+                setValue(0)
+                console.log("i", value)
+            }
+        }
+
+        else if (likeStatus === 'unliked') {
+            setValue(j + 1)
+            console.log("j", value)
+            if (value === 1) {
+                setValue(0)
+                console.log("j", value)
+            }
+        }
+
+
+        console.log('Value', value);
+
+
+        click.push('1')
+        console.log('array length', click.length)
+        // click.pop()
+
+        if (click.length % 2 === 0) {
+            console.log('even')
+
+
+        }
+        else {
+            console.log('odd')
+        }
+
+        setQuantity(quantity)
+        console.log(likesQuantity)
+
+        console.log(quantity);
+        // const [user, loading, error] = useAuthState(auth);
+        // const name = user.displayName;
+
+        if ((value === 0 && likeStatus === 'liked') || likeStatus === 'unliked') {
+            const email = user?.email;
+            const totalLikes = quantity + 1;
+            const liked = 'liked';
+
+            const update = { totalLikes, email, liked }
+            console.log(update);
+
+            const url = `http://localhost:5000/posts/${id}`
+            fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json'
+
+                },
+                body: JSON.stringify(update)
+
+            })
+
+                .then(res => res.json())
+                .then(data => {
+                    console.log('success', data);
+                    // alert('Quantity updated successfully');
+
+                })
+
+        }
+
+        else if (likeStatus === 'liked') {
+            const email = user?.email;
+            const totalLikes = quantity - 1;
+            const liked = 'unliked';
+
+            const update = { totalLikes, email, liked }
+            console.log(update);
+
+            const url = `http://localhost:5000/posts/${id}`
+            fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json'
+
+                },
+                body: JSON.stringify(update)
+
+            })
+
+                .then(res => res.json())
+                .then(data => {
+                    console.log('success', data);
+                    // alert('Quantity updated successfully');
+
+                })
+
+        }
+
+
+    }
 
     return (
         <div className='container mt-3 mb-5'>
@@ -224,7 +347,7 @@ const Posts = () => {
 
                     )}
                     {
-                        posts.map(post => <div key={post._id} className="card mb-3">
+                        posts?.map(post => <div key={post._id} className="card mb-3">
                             <img src={post?.image} className="card-img-top" alt="..."></img>
                             <div className="card-body">
                                 <h5 className="card-title">Article</h5>
@@ -238,7 +361,14 @@ const Posts = () => {
                                             <img className='img-fluid rounded-pill user-img' src={post?.userImg} alt="" /><span className='fw-bold user-name'> {post?.name}</span>
                                         </div>
                                         <div className="d-flex align-items-center views">
-                                            <div className="d-flex align-items-center"> <FontAwesomeIcon icon={faHeart} className="text-secondary"></FontAwesomeIcon> </div>
+                                            <div className="d-flex align-items-center">
+                                                <button onClick={() => handleColor(post?.likes, post?._id, user, post?.like)} className='p-0 bg-white border-0'>
+                                                    {
+                                                        post?.like === 'liked' ? <FontAwesomeIcon style={{ color: 'red' }} icon={faHeart} ></FontAwesomeIcon> : <FontAwesomeIcon icon={faHeart} className="text-secondary"></FontAwesomeIcon>
+                                                    }
+
+                                                </button>
+                                            </div>
                                             <p className='ps-1 pe-2 m-0 '>{post?.likes}</p>
                                             <div className="d-flex align-items-center"> <FontAwesomeIcon icon={faEye} className="text-secondary"></FontAwesomeIcon> </div>
                                             <p className='ps-1 pe-1 m-0 '>1.4k Views</p>
@@ -257,7 +387,7 @@ const Posts = () => {
                         </div>)
                     }
                     {/* <!-- Modal --> */}
-                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
                                 <div class="modal-header">
