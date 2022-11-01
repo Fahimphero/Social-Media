@@ -45,7 +45,7 @@ const Posts = () => {
     }
 
     useEffect(() => {
-        fetch('http://localhost:5000/posts')
+        fetch('https://social-media-server-kcnh.onrender.com/posts')
             .then(res => res.json())
             .then(data => setPosts(data))
     }, [posts])
@@ -87,7 +87,7 @@ const Posts = () => {
                             comments: []
                         }
                         // Send to database
-                        fetch('http://localhost:5000/posts', {
+                        fetch('https://social-media-server-kcnh.onrender.com/posts', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'
@@ -119,7 +119,7 @@ const Posts = () => {
     }
 
     const { data: post, isLoading, refetch } = useQuery('post', () =>
-        fetch(`http://localhost:5000/posts/${postId}`).then(res =>
+        fetch(`https://social-media-server-kcnh.onrender.com/posts/${postId}`).then(res =>
             res.json()
         )
     )
@@ -128,7 +128,7 @@ const Posts = () => {
         console.log(id)
         setPostid(id)
 
-        // const url = `http://localhost:5000/posts/${id}`
+        // const url = `https://social-media-server-kcnh.onrender.com/posts/${id}`
         // fetch(url)
         //     .then(res => res.json())
         //     .then(data => setPost(data))
@@ -151,7 +151,7 @@ const Posts = () => {
         console.log(update)
 
 
-        fetch(`http://localhost:5000/comments/${postId}`, {
+        fetch(`https://social-media-server-kcnh.onrender.com/comments/${postId}`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -227,7 +227,7 @@ const Posts = () => {
             const update = { totalLikes, email, liked }
             console.log(update);
 
-            const url = `http://localhost:5000/posts/${id}`
+            const url = `https://social-media-server-kcnh.onrender.com/posts/${id}`
             fetch(url, {
                 method: 'PUT',
                 headers: {
@@ -255,7 +255,7 @@ const Posts = () => {
             const update = { totalLikes, email, liked }
             console.log(update);
 
-            const url = `http://localhost:5000/posts/${id}`
+            const url = `https://social-media-server-kcnh.onrender.com/posts/${id}`
             fetch(url, {
                 method: 'PUT',
                 headers: {
@@ -310,28 +310,28 @@ const Posts = () => {
                     <div style={{ display: `${showForm}` }}>
                         <form onSubmit={handleCreatePost}>
 
-                            <div class="mb-3">
-                                <label htmlFor="exampleFormControlInput1" class="form-label">Name</label>
-                                <input type="text" class="form-control"
+                            <div className="mb-3">
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Name</label>
+                                <input type="text" className="form-control"
                                     id="exampleFormControlInput1" placeholder="your name" defaultValue={user?.displayName} readOnly></input>
                             </div>
-                            <div class="mb-3">
-                                <label htmlFor="exampleFormControlInput1" class="form-label">Post Title</label>
+                            <div className="mb-3">
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Post Title</label>
                                 <input type="text"
                                     name='title'
-                                    class="form-control" id="exampleFormControlInput1" placeholder="Title" required></input>
+                                    className="form-control" id="exampleFormControlInput1" placeholder="Title" required></input>
                             </div>
-                            <div class="mb-3">
-                                <label htmlFor="exampleFormControlTextarea1" class="form-label">Write here</label>
-                                <textarea type="text" name='post' class="form-control" required id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <div className="mb-3">
+                                <label htmlFor="exampleFormControlTextarea1" className="form-label">Write here</label>
+                                <textarea type="text" name='post' className="form-control" required id="exampleFormControlTextarea1" rows="3"></textarea>
                             </div>
                             <div>
-                                <label htmlFor="formFile" class="form-label">Insert Image</label>
+                                <label htmlFor="formFile" className="form-label">Insert Image</label>
                                 <div className='row'>
 
-                                    <div class="mb-3 col-10">
+                                    <div className="mb-3 col-10">
 
-                                        <input class="form-control" type="file" name='file' id="formFile"></input>
+                                        <input className="form-control" type="file" name='file' id="formFile"></input>
                                     </div>
                                     <div className="col-2 d-flex justify-content-end ">
                                         <div >
@@ -387,14 +387,14 @@ const Posts = () => {
                         </div>)
                     }
                     {/* <!-- Modal --> */}
-                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Comments</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h1 className="modal-title fs-5" id="staticBackdropLabel">Comments</h1>
+                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <div class="modal-body">
+                                <div className="modal-body">
                                     {
                                         post?.comments?.map(p =>
                                             <div className='border-bottom mb-3 rounded-3 px-3 py-1'>
@@ -412,13 +412,13 @@ const Posts = () => {
                                             </div>)
                                     }
                                 </div>
-                                <div class="modal-footer">
+                                <div className="modal-footer">
                                     <form onSubmit={handleSubmit} className="row container">
                                         <div className='col-9'>
                                             <input className='w-100' type="text" name="comment" id="" placeholder='write your comment' />
                                         </div>
                                         <div className='col-3'>
-                                            <button type="submit" class="btn btn-primary px-4">Post</button>
+                                            <button type="submit" className="btn btn-primary px-4">Post</button>
                                         </div>
                                     </form>
                                 </div>
