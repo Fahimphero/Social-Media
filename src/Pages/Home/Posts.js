@@ -50,6 +50,11 @@ const Posts = () => {
             .then(data => setPosts(data))
     }, [posts])
 
+    if (!posts) {
+        setProcessing(true)
+    }
+
+
 
     const handleCreatePost = (event) => {
         event.preventDefault();
