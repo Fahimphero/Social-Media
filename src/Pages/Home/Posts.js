@@ -126,8 +126,12 @@ const Posts = () => {
     refetch()
     const handleComment = (id) => {
         console.log(id)
-        setPostid(id)
-
+        if (user) {
+            setPostid(id)
+        }
+        else {
+            toast.error('Please Login First')
+        }
         // const url = `https://social-media-server-kcnh.onrender.com/posts/${id}`
         // fetch(url)
         //     .then(res => res.json())
@@ -135,35 +139,42 @@ const Posts = () => {
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault()
-        const comment = e.target.comment.value;
-        console.log(comment)
+        if (user) {
+            e.preventDefault()
+            const comment = e.target.comment.value;
+            console.log(comment)
 
-        setComment(comment)
-        const name = user?.displayName;
-        const img = user?.photoURL;
-        var comments = {
-            comment: comment,
-            userName: name,
-            img: img,
-        };
-        const update = { comments }
-        console.log(update)
+            setComment(comment)
+            const name = user?.displayName;
+            const img = user?.photoURL;
+            var comments = {
+                comment: comment,
+                userName: name,
+                img: img,
+            };
+            const update = { comments }
+            console.log(update)
 
 
-        fetch(`https://social-media-server-kcnh.onrender.com/comments/${postId}`, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(update)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                refetch()
-                e.target.reset()
+            fetch(`https://social-media-server-kcnh.onrender.com/comments/${postId}`, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(update)
             })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    refetch()
+                    e.target.reset()
+                })
+        }
+        else {
+            e.preventDefault()
+            toast.error('Please Login First')
+            e.target.reset()
+        }
 
     }
 
