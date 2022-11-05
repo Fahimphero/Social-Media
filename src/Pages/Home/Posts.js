@@ -17,12 +17,14 @@ import auth from '../../firebase.init';
 import { toast, ToastContainer } from 'react-toastify';
 import gif from '../../Images/Spinner-1s-104px (2).svg'
 import { useQuery } from 'react-query';
+import Loading from '../Loading/Loading';
+import defaultUserImg from '../../Images/DefaultUser.png'
 
 
 const Posts = () => {
     const [user] = useAuthState(auth);
     // console.log(user)
-    const [processing, setProcessing] = useState(false);
+
     const [showForm, setShowForm] = useState('none')
     const [posts, setPosts] = useState([]);
     const [comment, setComment] = useState('');
@@ -50,9 +52,6 @@ const Posts = () => {
             .then(data => setPosts(data))
     }, [posts])
 
-    if (!posts) {
-        setProcessing(true)
-    }
 
 
 
@@ -293,6 +292,9 @@ const Posts = () => {
 
 
     }
+    if (posts.length === 0) {
+        return <Loading></Loading>
+    }
 
     return (
         <div className='container mt-3 mb-5'>
@@ -358,10 +360,7 @@ const Posts = () => {
                             </div>
                         </form>
                     </div>
-                    {processing && (
-                        <div className="d-flex justify-content-center"><img src={gif} alt="" /></div>
 
-                    )}
                     {
                         posts?.map(post => <div key={post._id} className="card mb-3">
                             <img src={post?.image} className="card-img-top" alt="..."></img>
@@ -416,9 +415,16 @@ const Posts = () => {
                                             <div className='border-bottom mb-3 rounded-3 px-3 py-1'>
                                                 <div className='d-flex align-items-center '>
                                                     <div className='d-flex align-items-center pe-3'>
-                                                        <div>
-                                                            <img className='rounded-3 img-fluid' style={{ width: '33px' }} src={p?.img} alt="" />
-                                                        </div>
+                                                        {
+                                                            p?.img ?
+                                                                <div>
+                                                                    <img className='rounded-3 img-fluid' style={{ width: '33px' }} src={p?.img} alt="" />
+                                                                </div> :
+                                                                <div>
+                                                                    <img className='rounded-3 img-fluid' style={{ width: '33px' }} src={defaultUserImg} alt="" />
+                                                                </div>
+
+                                                        }
 
                                                     </div>
                                                     <p className='m-0 fs-5'>{p?.userName}</p>
